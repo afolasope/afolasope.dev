@@ -5,9 +5,11 @@ import {
   MDBCarouselItem,
 } from "mdb-react-ui-kit";
 import Head from "next/head";
-import Image from "next/image";
+import { collection, getDocs } from "@firebase/firestore";
+import db from "../firebase";
+import safeJsonStringify from "safe-json-stringify";
 
-export default function Home() {
+export default function Home({ skills, projects }) {
   return (
     <div>
       <Head>
@@ -56,7 +58,7 @@ export default function Home() {
             <h4>python</h4>
           </div>
           <div className="skill">
-            <image src="/images/django.svg" alt="Django logo" />
+            <img src="/images/django.svg" alt="Django logo" />
             <h4>django</h4>
           </div>
           <div className="skill">
@@ -68,226 +70,58 @@ export default function Home() {
       <div className="container projects" id="projects">
         <h2 className="heading">Live Projects</h2>
         <div className="grids">
-          <div className="grid project">
-            <div className="grid-img">
-              <MDBCarousel showControls>
-                <MDBCarouselInner>
-                  <MDBCarouselItem className="active">
-                    <MDBCarouselElement src="/images/djecomm1.png" alt="..." />
-                  </MDBCarouselItem>
-                  <MDBCarouselItem>
-                    <MDBCarouselElement src="/images/djecomm2.png" alt="..." />
-                  </MDBCarouselItem>
-                </MDBCarouselInner>
-              </MDBCarousel>
-            </div>
-            <div className="grid-body">
-              <div className="site-info">
-                <h4>Fabric Shop</h4>
-                <p>
-                  A one stop shop for stylists and fashion designers to buy
-                  clothing materials. Ready to wear (ready-made) clothes are
-                  also available for interested customers.
-                </p>
+          {projects.map((project) => (
+            <div className="grid project" key={project.id}>
+              <div className="grid-img">
+                <MDBCarousel showControls>
+                  <MDBCarouselInner>
+                    <MDBCarouselItem className="active">
+                      <MDBCarouselElement
+                        src={project.data.image}
+                        alt="Project Screenshot"
+                      />
+                    </MDBCarouselItem>
+                    {project.data.screenshots.map((screenshot) => (
+                      <MDBCarouselItem
+                        key={project.data.screenshots.indexOf(screenshot)}
+                      >
+                        <MDBCarouselElement
+                          src={screenshot.image}
+                          alt="Project Screenshot"
+                        />
+                      </MDBCarouselItem>
+                    ))}
+                  </MDBCarouselInner>
+                </MDBCarousel>
               </div>
-              <div className="stack">
-                <img
-                  src="/images/python-5.svg"
-                  alt="Python icon"
-                  className="img-icon"
-                />{" "}
-                <img
-                  src="/images/django.svg"
-                  alt="Django logo"
-                  className="img-icon"
-                />{" "}
-                <i className="fab fa-html5 html"></i>{" "}
-                <i className="fab fa-css3-alt css"></i>{" "}
-                <img
-                  src="/images/logo-javascript.svg"
-                  alt="Javascript icon"
-                  className="img-icon"
-                />
+              <div className="grid-body">
+                <div className="site-info">
+                  <h4>{project.data.name}</h4>
+                  <p>{project.data.description}</p>
+                </div>
+                <div className="stack">
+                  {project.data.stack.map((tech) => (
+                    <img
+                      src={tech.icon}
+                      alt={`${tech.tech} icon`}
+                      className="img-icon"
+                      key={project.data.stack.indexOf(tech)}
+                    />
+                  ))}
+                </div>
+                <a href={project.data.github} target="_blank">
+                  <i className="fab fa-github"></i>code
+                </a>
+                <a
+                  href={project.data.link}
+                  target="_blank"
+                  className="btn site-link"
+                >
+                  View site
+                </a>
               </div>
-              <a
-                href="https://github.com/AfeezGL/django-ecommerce-app"
-                target="_blank"
-              >
-                <i className="fab fa-github"></i>code
-              </a>
-              <a
-                href="https://prj-django-ecomm.herokuapp.com/"
-                target="_blank"
-                className="btn site-link"
-              >
-                View site
-              </a>
             </div>
-          </div>
-          <div className="grid project">
-            <div className="grid-img">
-              <Image
-                src="/images/blog.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-              <Image
-                src="/images/blogposts.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-              <Image
-                src="/images/blogpost.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-            </div>
-            <div className="grid-body">
-              <div className="site-info">
-                <h3>Django Blog</h3>
-                <p>
-                  A simple blog app created with the Django framework just to
-                  check how fast I can plug an app into a template. Well, it was
-                  a quick one.
-                </p>
-              </div>
-              <div className="stack">
-                <Image
-                  src="/images/python-5.svg"
-                  alt="Python icon"
-                  className="img-icon"
-                  height={19}
-                  width={19}
-                />
-                <Image
-                  src="/images/django.svg"
-                  alt="Django logo"
-                  className="img-icon"
-                  height={19}
-                  width={19}
-                />{" "}
-                <i className="fab fa-html5 html"></i>{" "}
-                <i className="fab fa-css3-alt css"></i>{" "}
-                <Image
-                  src="/images/logo-javascript.svg"
-                  alt="Javascript icon"
-                  className="img-icon"
-                  height={19}
-                  width={19}
-                />
-              </div>
-              <a
-                href="https://github.com/AfeezGL/django-blog-app"
-                target="_blank"
-              >
-                <i className="fab fa-github"></i>code
-              </a>
-              <a
-                href="https://prj-django-blog.herokuapp.com"
-                target="_blank"
-                className="btn site-link"
-              >
-                View site
-              </a>
-            </div>
-          </div>
-          <div className="grid project simi">
-            <div className="grid-img">
-              <Image
-                src="/images/simi.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-              <Image
-                src="/images/simiplans.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-              <Image
-                src="/images/simicontact.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-            </div>
-            <div className="grid-body">
-              <div className="site-info">
-                <h3>Simi</h3>
-                <p>
-                  A colour rich mobile responsive landing page website for a
-                  Nigerian based rice production company.
-                </p>
-              </div>
-              <div className="stack">
-                <i className="fab fa-html5 html"></i>{" "}
-                <i className="fab fa-css3-alt css"></i>
-              </div>
-              <a href="https://github.com/AfeezGL/simi" target="_blank">
-                <i className="fab fa-github"></i>code
-              </a>
-              <a
-                href="http://simi-redesign.netlify.app"
-                target="_blank"
-                className="btn site-link"
-              >
-                View site
-              </a>
-            </div>
-          </div>
-          <div className="grid project">
-            <div className="grid-img">
-              <Image
-                src="/images/hello-fetch.png"
-                alt="Project screenshot"
-                className="display"
-                width="100%"
-                height="100%"
-              />
-            </div>
-            <div className="grid-body">
-              <div className="site-info">
-                <h4>Github API Search</h4>
-                <p>
-                  Just a fun little one page website that searches github for a
-                  given username and returns a little thing about the user using
-                  Fetch API
-                </p>
-              </div>
-              <div className="stack">
-                <i className="fab fa-html5 html"></i>{" "}
-                <i className="fab fa-css3-alt css"></i>{" "}
-                <Image
-                  src="/images/logo-javascript.svg"
-                  alt="Javascript icon"
-                  className="img-icon"
-                  height={19}
-                  width={19}
-                />
-                <i className="fab fa-bootstrap bootstrap"></i>
-              </div>
-              <a href="https://github.com/AfeezGL/hello-fetch" target="_blank">
-                <i className="fab fa-github"></i>code
-              </a>
-              <a
-                href="https://afeezgl.github.io/hello-fetch"
-                target="_blank"
-                className="btn site-link"
-              >
-                View site
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="container" id="contact">
@@ -309,3 +143,24 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  // get skills from database
+  const skillsref = await getDocs(collection(db, "skills"));
+  const skills = skillsref.docs.map((doc) => ({
+    id: doc.id,
+    data: JSON.parse(safeJsonStringify(doc.data())),
+  }));
+  // get projects from firebase
+  const projectsRef = await getDocs(collection(db, "projects"));
+  const projects = projectsRef.docs.map((doc) => ({
+    id: doc.id,
+    data: JSON.parse(safeJsonStringify(doc.data())),
+  }));
+  return {
+    props: {
+      projects,
+      skills,
+    },
+  };
+};

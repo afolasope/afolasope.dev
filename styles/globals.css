@@ -188,6 +188,7 @@ body {
   }
   .grid-img {
     border-radius: 5px;
+    place-self: center;
     background-color: #09f755;
   }
   .grid:nth-child(even) .grid-body {
@@ -201,6 +202,7 @@ body {
     grid-template-columns: 1fr 2fr;
   }
   .grid-img img {
+    min-width: 300px;
     width: 100%;
   }
 }
