@@ -4,7 +4,6 @@ import {
   MDBCarouselInner,
   MDBCarouselItem,
 } from "mdb-react-ui-kit";
-import Head from "next/head";
 import { collection, getDocs } from "@firebase/firestore";
 import db from "../firebase";
 import safeJsonStringify from "safe-json-stringify";
@@ -12,16 +11,6 @@ import safeJsonStringify from "safe-json-stringify";
 export default function Home({ skills, projects }) {
   return (
     <div>
-      <Head>
-        <title>Afeez G. Lawal</title>
-        <meta name="description" content="Frontend engineer" />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-          rel="stylesheet"
-        />
-      </Head>
-
       <div className="header">
         <header>
           <div className="image-container">
@@ -41,30 +30,12 @@ export default function Home({ skills, projects }) {
       <div className="container skillset" id="skillset">
         <h1 className="heading">Technical Skills</h1>
         <div className="skills">
-          <div className="skill">
-            <i className="fab fa-html5 html"></i>
-            <h4>html5</h4>
-          </div>
-          <div className="skill">
-            <i className="fab fa-css3-alt css"></i>
-            <h4>css3</h4>
-          </div>
-          <div className="skill">
-            <img src="/images/logo-javascript.svg" alt="Javascript icon" />
-            <h4>javascript</h4>
-          </div>
-          <div className="skill">
-            <img src="/images/python-5.svg" alt="Python icon" />
-            <h4>python</h4>
-          </div>
-          <div className="skill">
-            <img src="/images/django.svg" alt="Django logo" />
-            <h4>django</h4>
-          </div>
-          <div className="skill">
-            <img src="/images/bootstrap-4.svg" alt="Bootstrap icon" />
-            <h4>bootstrap</h4>
-          </div>
+          {skills.map((skill) => (
+            <div className="skill" key={skills.id}>
+              <img src={skill.data.image} alt={`${skill.data.name} icon`} />
+              <h4>{skill.data.name}</h4>
+            </div>
+          ))}
         </div>
       </div>
       <div className="container projects" id="projects">

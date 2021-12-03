@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import db from "../../firebase";
+import {
+  MDBBadge,
+  MDBBtn,
+  MDBContainer,
+  MDBIcon,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBNavbar,
+  MDBNavbarBrand,
+} from "mdb-react-ui-kit";
 
 const index = () => {
   const [skillsets, setSkillsets] = useState([]);
@@ -38,44 +48,51 @@ const index = () => {
     };
   }, []);
 
-  const Skill = ({ skill }) => {
-    return (
-      <div className="skill">
-        <img src={skill.data.image} alt={`${skill.data.name} icon`} />
-        <h4>{skill.data.name}</h4>
-      </div>
-    );
-  };
-
-  const Project = ({ project }) => {
-    return (
-      <div className="project">
-        <img src={project.data.image} alt={`${project.data.name} icon`} />
-        <h4>{project.data.name}</h4>
-      </div>
-    );
-  };
-
   return (
     <>
+      <MDBNavbar light bgColor="light">
+        <MDBContainer fluid>
+          <MDBNavbarBrand>Admin</MDBNavbarBrand>
+        </MDBContainer>
+      </MDBNavbar>
       <div className="container">
-        <h1>Admin</h1>
-      </div>
-      <div className="container">
-        <h2>Skillsets</h2>
-        <div className="skillsets">
-          {skillsets.map((skill) => (
-            <Skill skill={skill} key={skill.id} />
-          ))}
+        <div>
+          <h2>Skillsets</h2>
+          <MDBListGroup style={{ minWidth: "22rem" }}>
+            {skillsets.map((skill) => (
+              <MDBListGroupItem
+                className="d-flex justify-content-between align-items-center"
+                key={skill.id}
+              >
+                <div className="d-inline-flex justify-content-center">
+                  <img src={skill.data.image} alt={`${skill.data.name} icon`} />
+                  {skill.data.name}
+                </div>
+                <MDBBadge pill>edit</MDBBadge>
+              </MDBListGroupItem>
+            ))}
+          </MDBListGroup>
+          <MDBBadge pill color="secondary">
+            <MDBIcon fas icon="plus" />
+          </MDBBadge>
         </div>
-        <p>manage</p>
-      </div>
-      <div className="container">
-        <h2>Projects</h2>
-        <div className="projects">
-          {projects.map((project) => (
-            <Project project={project} key={project.id} />
-          ))}
+
+        <div>
+          <h2>Projects</h2>
+          <MDBListGroup style={{ minWidth: "22rem" }}>
+            {projects.map((project) => (
+              <MDBListGroupItem
+                className="d-flex justify-content-between align-items-center"
+                key={project.id}
+              >
+                {project.data.name}
+                <MDBBadge pill>edit</MDBBadge>
+              </MDBListGroupItem>
+            ))}
+          </MDBListGroup>
+          <MDBBadge pill color="secondary">
+            <MDBIcon fas icon="plus" />
+          </MDBBadge>
         </div>
       </div>
     </>
