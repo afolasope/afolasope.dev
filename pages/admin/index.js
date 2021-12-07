@@ -12,7 +12,7 @@ import {
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
 
-const index = () => {
+const Index = () => {
   const [skillsets, setSkillsets] = useState([]);
   const [projects, setProjects] = useState([]);
 
@@ -99,4 +99,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

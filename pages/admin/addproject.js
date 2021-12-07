@@ -6,7 +6,7 @@ import {
 } from "mdb-react-ui-kit";
 import React from "react";
 
-const addproject = () => {
+const AddProject = () => {
   return (
     <>
       <MDBNavbar light bgColor="light">
@@ -32,4 +32,4 @@ const addproject = () => {
   );
 };
 
-export default addproject;
+export default AddProject;

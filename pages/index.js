@@ -18,7 +18,7 @@ export default function Home({ skills, projects }) {
           </div>
           <div className="info">
             <h1>Hi,</h1>
-            <h1>I'm Afeez G. Lawal</h1>
+            <h1>I&apos;m Afeez G. Lawal</h1>
             <p>
               A highly motivated web developer with a passion for coding and
               embracing challenges. On a journey of professional growth, I am
@@ -80,12 +80,13 @@ export default function Home({ skills, projects }) {
                     />
                   ))}
                 </div>
-                <a href={project.data.github} target="_blank">
+                <a href={project.data.github} target="_blank" rel="noreferrer">
                   <i className="fab fa-github"></i>code
                 </a>
                 <a
                   href={project.data.link}
                   target="_blank"
+                  rel="noreferrer"
                   className="btn site-link"
                 >
                   View site
