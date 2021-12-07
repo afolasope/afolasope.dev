@@ -1,6 +1,5 @@
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
-import { async } from "@firebase/util";
 import {
   MDBContainer,
   MDBInput,
@@ -8,11 +7,13 @@ import {
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
 import React, { useState } from "react";
+import Alert from "../../components/Alert";
 import db, { storage } from "../../firebase";
 
 const AddSkill = () => {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState(null);
+  const [alert, setAlert] = useState(null);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -30,9 +31,15 @@ const AddSkill = () => {
           name,
           image: downloadUrl,
         });
-        console.log("success");
+        setAlert({
+          message: "skill added",
+          type: "success",
+        });
       } catch (error) {
-        console.log(error);
+        setAlert({
+          message: error,
+          type: "danger",
+        });
       }
     });
     setName("");
@@ -69,6 +76,16 @@ const AddSkill = () => {
           <br />
           <MDBInput type="submit" />
         </form>
+        <br />
+        {alert && (
+          <Alert
+            message={alert.message}
+            type={alert.type}
+            close={() => {
+              setAlert(null);
+            }}
+          />
+        )}
       </div>
     </>
   );

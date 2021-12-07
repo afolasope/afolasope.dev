@@ -84,7 +84,7 @@ export default function Home({ skills, projects }) {
                   <i className="fab fa-github"></i>code
                 </a>
                 <a
-                  href={project.data.link}
+                  href={project.data.demoUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="btn site-link"
