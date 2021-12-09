@@ -116,7 +116,7 @@ export default function Home({ skills, projects }) {
   );
 }
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
   // get skills from database
   const skillsref = await getDocs(collection(db, "skills"));
   const skills = skillsref.docs.map((doc) => ({
