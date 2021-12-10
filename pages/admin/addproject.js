@@ -1,6 +1,10 @@
-import { addDoc, collection, getDocs } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  serverTimestamp,
+} from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
-import { async } from "@firebase/util";
 import {
   MDBContainer,
   MDBInput,
@@ -61,17 +65,16 @@ const AddProject = ({ stackOptions }) => {
                 screenshotRef,
                 screenshot
               );
-              getDownloadURL(uploadScreenshot.ref).then((screenshorUrl) =>
-                screenshotUrls.push(screenshorUrl)
-              );
+              getDownloadURL(uploadScreenshot.ref).then((screenshorUrl) => {
+                screenshotUrls.push(screenshorUrl);
+                // submit form to firestore
+                if (screenshots.length === screenshotUrls.length) {
+                  submitToFirestore(imageUrl, screenshotUrls);
+                }
+              });
             };
 
             uploadScreenshot(value);
-
-            // submit form to firestore
-            if (screenshots.length === screenshotUrls.length) {
-              submitToFirestore(imageUrl, screenshotUrls);
-            }
           }
         } catch (error) {
           setAlert({ message: error, type: "danger" });
@@ -95,6 +98,7 @@ const AddProject = ({ stackOptions }) => {
             image: screenshotUrl,
           })),
           blog,
+          timestamp: serverTimestamp(),
         });
         setAlert({ message: "Project added", type: "success" });
       } catch (error) {
@@ -214,7 +218,7 @@ const AddProject = ({ stackOptions }) => {
 export const getServerSideProps = async () => {
   const getSkills = await getDocs(collection(db, "skills"));
   const skills = getSkills.docs.map((doc) => ({
-    label: doc.data().name,
+    label: doc.data().tech,
     value: doc.data(),
   }));
 

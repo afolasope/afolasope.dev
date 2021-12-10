@@ -32,8 +32,8 @@ export default function Home({ skills, projects }) {
         <div className="skills">
           {skills.map((skill) => (
             <div className="skill" key={skills.id}>
-              <img src={skill.data.image} alt={`${skill.data.name} icon`} />
-              <h4>{skill.data.name}</h4>
+              <img src={skill.data.icon} alt={`${skill.data.tech} icon`} />
+              <h4>{skill.data.tech}</h4>
             </div>
           ))}
         </div>

@@ -176,6 +176,11 @@ body {
 .project img {
   width: 250px;
 }
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (min-width: 899px) {
   .grid {

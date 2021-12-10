@@ -11,13 +11,13 @@ import Alert from "../../components/Alert";
 import db, { storage } from "../../firebase";
 
 const AddSkill = () => {
-  const [name, setName] = useState("");
+  const [tech, setTech] = useState("");
   const [icon, setIcon] = useState(null);
   const [alert, setAlert] = useState(null);
 
   const submitForm = async (e) => {
     e.preventDefault();
-    if (!name) return;
+    if (!tech) return;
     if (!icon) return;
 
     // upload icon to firebase storage then get icon url which is then saved in the firestore database with the form
@@ -28,11 +28,11 @@ const AddSkill = () => {
       // save form to firestore
       try {
         addDoc(collection(db, "skills"), {
-          name,
-          image: downloadUrl,
+          tech,
+          icon: downloadUrl,
         });
         setAlert({
-          message: "skill added",
+          message: "Skill added",
           type: "success",
         });
       } catch (error) {
@@ -42,7 +42,7 @@ const AddSkill = () => {
         });
       }
     });
-    setName("");
+    setTech("");
   };
   return (
     <>
@@ -57,9 +57,9 @@ const AddSkill = () => {
             label="Technology"
             id="tech"
             type="text"
-            value={name}
+            value={tech}
             onChange={(e) => {
-              setName(e.target.value);
+              setTech(e.target.value);
             }}
           />
           <label className="form-label" htmlFor="customFile">
