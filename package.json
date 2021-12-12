@@ -6,7 +6,7 @@
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p 8080",
     "lint": "next lint",
-    "deploy": "npm run build && gcloud app deploy"
+    "deploy": "npm run build && gcloud app deploy --quiet"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^31.0.0",
