@@ -181,6 +181,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.admin-nav-link {
+  cursor: pointer;
+}
 
 @media (min-width: 899px) {
   .grid {

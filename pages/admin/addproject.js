@@ -1,3 +1,4 @@
+import { getAuth } from "@firebase/auth";
 import {
   addDoc,
   collection,
@@ -5,19 +6,19 @@ import {
   serverTimestamp,
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBNavbar,
-  MDBNavbarBrand,
-} from "mdb-react-ui-kit";
+import { MDBInput } from "mdb-react-ui-kit";
 import React, { useEffect, useRef, useState } from "react";
 import Select from "react-select";
+import AdminHeader from "../../components/AdminHeader";
 import Alert from "../../components/Alert";
+import Login from "../../components/Login";
+import Spinner from "../../components/Spinner";
 import db, { storage } from "../../firebase";
 
 const AddProject = ({ stackOptions }) => {
   const editorRef = useRef();
+  const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [github, setGithub] = useState(null);
@@ -26,18 +27,34 @@ const AddProject = ({ stackOptions }) => {
   const [image, setImage] = useState(null);
   const [screenshots, setScreenshots] = useState([]);
   const [stack, setStack] = useState(null);
-  const [mounted, setMounted] = useState(false);
+  const [ckeditorReady, setCkeditorReady] = useState(false);
   const [editor, setEditor] = useState(null);
   const { CKEditor, ClassicEditor } = editorRef.current || {};
   const [alert, setAlert] = useState(null);
 
   useEffect(() => {
+    let mounted = true;
+    const auth = getAuth();
     editorRef.current = {
       CKEditor: require("@ckeditor/ckeditor5-react").CKEditor, // v3+
       ClassicEditor: require("@ckeditor/ckeditor5-build-classic"),
     };
-    setMounted(true);
-  });
+
+    if (mounted) {
+      setCkeditorReady(true);
+    }
+
+    auth.onAuthStateChanged((response) => {
+      if (mounted) {
+        setUser(response);
+        setLoaded(true);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -107,112 +124,113 @@ const AddProject = ({ stackOptions }) => {
     };
   };
 
-  return (
-    <>
-      <MDBNavbar light bgColor="light">
-        <MDBContainer fluid>
-          <MDBNavbarBrand>Admin</MDBNavbarBrand>
-        </MDBContainer>
-      </MDBNavbar>
-      <div className="container">
-        <form onSubmit={submitForm}>
-          <label className="form-label" htmlFor="mainImage">
-            Main image
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="mainImage"
-            onChange={(e) => {
-              setImage(e.target.files[0]);
-            }}
-          />
-          <br />
-          <MDBInput
-            label="Project name"
-            id="projectName"
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
-          <MDBInput
-            label="Description"
-            id="projectDescription"
-            textarea
-            rows={3}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <br />
-          <label className="form-label" htmlFor="screenshots">
-            Extra screenshots
-          </label>
-          <input
-            type="file"
-            multiple
-            className="form-control"
-            id="screenshots"
-            onChange={(e) => {
-              console.log(e.target.files);
-              setScreenshots(e.target.files);
-            }}
-          />
-          <br />
-          <Select
-            isMulti
-            name="stack"
-            id="long-value-select"
-            instanceId="long-value-select"
-            options={stackOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={(values) => {
-              setStack(values);
-            }}
-          />
-          <br />
-          <MDBInput
-            label="Github link"
-            id="githubLink"
-            type="url"
-            onChange={(e) => setGithub(e.target.value)}
-          />
-          <br />
-          <MDBInput
-            label="Demo link"
-            id="demoLink"
-            type="url"
-            onChange={(e) => setDemoUrl(e.target.value)}
-          />
-          <br />
-          {mounted && (
-            <CKEditor
-              editor={ClassicEditor}
-              data="<p>Little blog about the project</p>"
-              onReady={(editor) => {
-                // You can store the "editor" and use when it's needed.
-                setEditor(editor);
+  if (user && loaded)
+    return (
+      <>
+        <AdminHeader />
+        <div className="container">
+          <form onSubmit={submitForm}>
+            <label className="form-label" htmlFor="mainImage">
+              Main image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="mainImage"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
               }}
-              onChange={() => {
-                const data = editor.getData();
-                setBlog(data);
+            />
+            <br />
+            <MDBInput
+              label="Project name"
+              id="projectName"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <br />
+            <MDBInput
+              label="Description"
+              id="projectDescription"
+              textarea
+              rows={3}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <br />
+            <label className="form-label" htmlFor="screenshots">
+              Extra screenshots
+            </label>
+            <input
+              type="file"
+              multiple
+              className="form-control"
+              id="screenshots"
+              onChange={(e) => {
+                console.log(e.target.files);
+                setScreenshots(e.target.files);
+              }}
+            />
+            <br />
+            <Select
+              isMulti
+              name="stack"
+              id="long-value-select"
+              instanceId="long-value-select"
+              options={stackOptions}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              onChange={(values) => {
+                setStack(values);
+              }}
+            />
+            <br />
+            <MDBInput
+              label="Github link"
+              id="githubLink"
+              type="url"
+              onChange={(e) => setGithub(e.target.value)}
+            />
+            <br />
+            <MDBInput
+              label="Demo link"
+              id="demoLink"
+              type="url"
+              onChange={(e) => setDemoUrl(e.target.value)}
+            />
+            <br />
+            {ckeditorReady && (
+              <CKEditor
+                editor={ClassicEditor}
+                data="<p>Little blog about the project</p>"
+                onReady={(editor) => {
+                  // You can store the "editor" and use when it's needed.
+                  setEditor(editor);
+                }}
+                onChange={() => {
+                  const data = editor.getData();
+                  setBlog(data);
+                }}
+              />
+            )}
+            <br />
+            <MDBInput type="submit" />
+          </form>
+          {alert && (
+            <Alert
+              message={alert.message}
+              type={alert.type}
+              close={() => {
+                setAlert(null);
               }}
             />
           )}
-          <br />
-          <MDBInput type="submit" />
-        </form>
-        {alert && (
-          <Alert
-            message={alert.message}
-            type={alert.type}
-            close={() => {
-              setAlert(null);
-            }}
-          />
-        )}
-      </div>
-    </>
-  );
+        </div>
+      </>
+    );
+
+  if (loaded) return <Login />;
+
+  return <Spinner />;
 };
 
 export const getServerSideProps = async () => {

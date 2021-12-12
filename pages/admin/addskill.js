@@ -1,19 +1,35 @@
+import { getAuth } from "@firebase/auth";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBNavbar,
-  MDBNavbarBrand,
-} from "mdb-react-ui-kit";
-import React, { useState } from "react";
+import { MDBInput } from "mdb-react-ui-kit";
+import React, { useEffect, useState } from "react";
+import AdminHeader from "../../components/AdminHeader";
 import Alert from "../../components/Alert";
+import Login from "../../components/Login";
+import Spinner from "../../components/Spinner";
 import db, { storage } from "../../firebase";
 
 const AddSkill = () => {
+  const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const [tech, setTech] = useState("");
   const [icon, setIcon] = useState(null);
   const [alert, setAlert] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const auth = getAuth();
+    auth.onAuthStateChanged((response) => {
+      if (mounted) {
+        setUser(response);
+        setLoaded(true);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -44,51 +60,53 @@ const AddSkill = () => {
     });
     setTech("");
   };
-  return (
-    <>
-      <MDBNavbar light bgColor="light">
-        <MDBContainer fluid>
-          <MDBNavbarBrand>Admin</MDBNavbarBrand>
-        </MDBContainer>
-      </MDBNavbar>
-      <div className="container">
-        <form onSubmit={submitForm}>
-          <MDBInput
-            label="Technology"
-            id="tech"
-            type="text"
-            value={tech}
-            onChange={(e) => {
-              setTech(e.target.value);
-            }}
-          />
-          <label className="form-label" htmlFor="customFile">
-            Icon
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="customFile"
-            onChange={(e) => {
-              setIcon(e.target.files[0]);
-            }}
-          />
+
+  if (user && loaded)
+    return (
+      <>
+        <AdminHeader />
+        <div className="container">
+          <form onSubmit={submitForm}>
+            <MDBInput
+              label="Technology"
+              id="tech"
+              type="text"
+              value={tech}
+              onChange={(e) => {
+                setTech(e.target.value);
+              }}
+            />
+            <label className="form-label" htmlFor="customFile">
+              Icon
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="customFile"
+              onChange={(e) => {
+                setIcon(e.target.files[0]);
+              }}
+            />
+            <br />
+            <MDBInput type="submit" />
+          </form>
           <br />
-          <MDBInput type="submit" />
-        </form>
-        <br />
-        {alert && (
-          <Alert
-            message={alert.message}
-            type={alert.type}
-            close={() => {
-              setAlert(null);
-            }}
-          />
-        )}
-      </div>
-    </>
-  );
+          {alert && (
+            <Alert
+              message={alert.message}
+              type={alert.type}
+              close={() => {
+                setAlert(null);
+              }}
+            />
+          )}
+        </div>
+      </>
+    );
+
+  if (loaded) return <Login />;
+
+  return <Spinner />;
 };
 
 export default AddSkill;

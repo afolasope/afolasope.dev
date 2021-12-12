@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import db from "../../firebase";
+import { getAuth } from "firebase/auth";
+import Login from "../../components/Login";
 import {
   MDBBadge,
-  MDBBtn,
-  MDBContainer,
   MDBIcon,
   MDBListGroup,
   MDBListGroupItem,
-  MDBNavbar,
-  MDBNavbarBrand,
 } from "mdb-react-ui-kit";
+import AdminHeader from "../../components/AdminHeader";
+import Spinner from "../../components/Spinner";
 
 const Index = () => {
+  const auth = getAuth();
+  const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const [skillsets, setSkillsets] = useState([]);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     let mounted = true;
+    auth.onAuthStateChanged((response) => {
+      if (mounted) {
+        setUser(response);
+        setLoaded(true);
+      }
+    });
+
     const getData = async () => {
       // get skillsets from firestore database
       const skillsetsData = await getDocs(collection(db, "skills"));
@@ -48,55 +58,60 @@ const Index = () => {
     };
   }, []);
 
-  return (
-    <>
-      <MDBNavbar light bgColor="light">
-        <MDBContainer fluid>
-          <MDBNavbarBrand>Admin</MDBNavbarBrand>
-        </MDBContainer>
-      </MDBNavbar>
-      <div className="container">
-        <div>
-          <h2>Skillsets</h2>
-          <MDBListGroup style={{ minWidth: "22rem" }}>
-            {skillsets.map((skill) => (
-              <MDBListGroupItem
-                className="d-flex justify-content-between align-items-center"
-                key={skill.id}
-              >
-                <div className="d-inline-flex justify-content-center">
-                  <img src={skill.data.image} alt={`${skill.data.name} icon`} />
-                  {skill.data.name}
-                </div>
-                <MDBBadge pill>edit</MDBBadge>
-              </MDBListGroupItem>
-            ))}
-          </MDBListGroup>
-          <MDBBadge pill color="secondary">
-            <MDBIcon fas icon="plus" />
-          </MDBBadge>
-        </div>
+  if (loaded && user)
+    return (
+      <>
+        <AdminHeader />
+        <div className="container">
+          <div>
+            <h2>Skillsets</h2>
+            <MDBListGroup style={{ minWidth: "22rem" }}>
+              {skillsets.map((skill) => (
+                <MDBListGroupItem
+                  className="d-flex justify-content-between align-items-center"
+                  key={skill.id}
+                >
+                  <div className="d-flex align-items-center">
+                    <img
+                      src={skill.data.icon}
+                      alt={`${skill.data.tech} icon`}
+                      width="30px"
+                      height="30px"
+                    />
+                    <div>{skill.data.tech}</div>
+                  </div>
+                  <MDBBadge pill>edit</MDBBadge>
+                </MDBListGroupItem>
+              ))}
+            </MDBListGroup>
+            <MDBBadge pill color="secondary">
+              <MDBIcon fas icon="plus" />
+            </MDBBadge>
+          </div>
 
-        <div>
-          <h2>Projects</h2>
-          <MDBListGroup style={{ minWidth: "22rem" }}>
-            {projects.map((project) => (
-              <MDBListGroupItem
-                className="d-flex justify-content-between align-items-center"
-                key={project.id}
-              >
-                {project.data.name}
-                <MDBBadge pill>edit</MDBBadge>
-              </MDBListGroupItem>
-            ))}
-          </MDBListGroup>
-          <MDBBadge pill color="secondary">
-            <MDBIcon fas icon="plus" />
-          </MDBBadge>
+          <div>
+            <h2>Projects</h2>
+            <MDBListGroup style={{ minWidth: "22rem" }}>
+              {projects.map((project) => (
+                <MDBListGroupItem
+                  className="d-flex justify-content-between align-items-center"
+                  key={project.id}
+                >
+                  {project.data.name}
+                  <MDBBadge pill>edit</MDBBadge>
+                </MDBListGroupItem>
+              ))}
+            </MDBListGroup>
+            <MDBBadge pill color="secondary">
+              <MDBIcon fas icon="plus" />
+            </MDBBadge>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+
+  if (loaded) return <Login />;
+
+  return <Spinner />;
 };
-
 export default Index;
