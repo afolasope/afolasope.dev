@@ -13,5 +13,9 @@
 .git
 .gitignore
 
+# Next.js source code
+/pages/
+/components/
+
 # Node.js dependencies:
 node_modules/
