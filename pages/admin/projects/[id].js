@@ -37,7 +37,6 @@ const Project = () => {
       if (mounted) {
         const data = { ...document.data() };
         setProject(data);
-        console.log({ ...document.data() });
       }
     };
 
@@ -70,8 +69,6 @@ const Project = () => {
   const handleMainImageChange = async () => {
     if (!newMainImage) return;
 
-    console.log("uploading Main Image");
-
     const imageRef = ref(storage, newMainImage.name);
     const uploadImage = await uploadBytes(imageRef, newMainImage);
 
@@ -84,8 +81,6 @@ const Project = () => {
   };
 
   const handleScreenshotsChange = () => {
-    console.log("uploading screenshots");
-
     const numberOfFiles = newScreenShots.length;
 
     const screenshotUrls = []; //screenshot urls would be pushed here after each screenshot is uploaded, which would then be stored in the project state
@@ -98,7 +93,6 @@ const Project = () => {
 
           getDownloadURL(uploadScreenshot.ref).then((screenshorUrl) => {
             screenshotUrls.push({ image: screenshorUrl });
-            console.log("upload completed");
 
             // update project state when all screenshots has been uploaded
             if (numberOfFiles === screenshotUrls.length) {
@@ -173,12 +167,11 @@ const Project = () => {
             <br />
             <MDBRow>
               {project.screenshots.map((screenshot) => (
-                <MDBCol>
+                <MDBCol key={project.screenshots.indexOf(screenshot)}>
                   <img
                     src={screenshot.image}
                     alt="Project screenshot"
                     width={"100%"}
-                    key={project.screenshots.indexOf(screenshot)}
                   />
                 </MDBCol>
               ))}
@@ -193,7 +186,6 @@ const Project = () => {
               id="screenshots"
               name="screenshots"
               onChange={(e) => {
-                console.log(e.target.files);
                 setNewScreenShots(e.target.files);
                 handleScreenshotsChange();
               }}
@@ -219,7 +211,6 @@ const Project = () => {
                   ...prevState,
                   stack: values.map((option) => option.value),
                 }));
-                console.log(project);
               }}
             />
 
