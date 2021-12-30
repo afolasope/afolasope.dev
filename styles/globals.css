@@ -191,6 +191,9 @@ body {
 .admin-nav-link {
   cursor: pointer;
 }
+.link {
+  cursor: pointer;
+}
 
 @media (min-width: 899px) {
   .grid {

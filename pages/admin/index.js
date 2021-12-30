@@ -11,6 +11,7 @@ import {
 } from "mdb-react-ui-kit";
 import AdminHeader from "../../components/AdminHeader";
 import Spinner from "../../components/Spinner";
+import Link from "next/link";
 
 const Index = () => {
   const auth = getAuth();
@@ -80,7 +81,9 @@ const Index = () => {
                     />
                     <div>{skill.data.tech}</div>
                   </div>
-                  <MDBBadge pill>edit</MDBBadge>
+                  <MDBBadge className="link" pill>
+                    edit
+                  </MDBBadge>
                 </MDBListGroupItem>
               ))}
             </MDBListGroup>
@@ -98,7 +101,14 @@ const Index = () => {
                   key={project.id}
                 >
                   {project.data.name}
-                  <MDBBadge pill>edit</MDBBadge>
+                  <Link
+                    href={"/admin/projects/[id]"}
+                    as={`/admin/projects/${project.id}`}
+                  >
+                    <MDBBadge className="link" pill>
+                      edit
+                    </MDBBadge>
+                  </Link>
                 </MDBListGroupItem>
               ))}
             </MDBListGroup>
