@@ -217,8 +217,9 @@ const Project = () => {
               onChange={(values) => {
                 setProject((prevState) => ({
                   ...prevState,
-                  stack: values,
+                  stack: values.map((option) => option.value),
                 }));
+                console.log(project);
               }}
             />
 

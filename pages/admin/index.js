@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import db from "../../firebase";
 import { getAuth } from "firebase/auth";
 import Login from "../../components/Login";
@@ -12,6 +12,7 @@ import {
 import AdminHeader from "../../components/AdminHeader";
 import Spinner from "../../components/Spinner";
 import Link from "next/link";
+import Alert from "../../components/Alert";
 
 const Index = () => {
   const auth = getAuth();
@@ -19,6 +20,7 @@ const Index = () => {
   const [loaded, setLoaded] = useState(false);
   const [skillsets, setSkillsets] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [alert, setAlert] = useState(null);
 
   useEffect(() => {
     let mounted = true;
@@ -59,6 +61,24 @@ const Index = () => {
     };
   }, []);
 
+  const deleteSkill = async (id) => {
+    try {
+      const docRef = doc(db, "skills", id);
+      // Delete skill from firestore database
+      await deleteDoc(docRef);
+
+      // remove deleted skill from skillsets state
+      const newSkills = skillsets.filter((skill) => {
+        return skill.id !== id;
+      });
+      setSkillsets(newSkills);
+
+      setAlert({ message: "Deleted", type: "success" });
+    } catch (error) {
+      setAlert({ message: error, type: "danger" });
+    }
+  };
+
   if (loaded && user)
     return (
       <>
@@ -72,7 +92,7 @@ const Index = () => {
                   className="d-flex justify-content-between align-items-center"
                   key={skill.id}
                 >
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center gap-2">
                     <img
                       src={skill.data.icon}
                       alt={`${skill.data.tech} icon`}
@@ -81,9 +101,19 @@ const Index = () => {
                     />
                     <div>{skill.data.tech}</div>
                   </div>
-                  <MDBBadge className="link" pill>
-                    edit
-                  </MDBBadge>
+                  <div className="d-flex align-items-center gap-2">
+                    <MDBBadge className="link" pill>
+                      edit
+                    </MDBBadge>
+                    <MDBBadge
+                      className="link"
+                      pill
+                      color="danger"
+                      onClick={() => deleteSkill(skill.id)}
+                    >
+                      delete
+                    </MDBBadge>
+                  </div>
                 </MDBListGroupItem>
               ))}
             </MDBListGroup>
@@ -116,6 +146,15 @@ const Index = () => {
               <MDBIcon fas icon="plus" />
             </MDBBadge>
           </div>
+          {alert && (
+            <Alert
+              message={alert.message}
+              type={alert.type}
+              close={() => {
+                setAlert(null);
+              }}
+            />
+          )}
         </div>
       </>
     );
