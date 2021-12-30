@@ -37,10 +37,9 @@ const AddSkill = () => {
     if (!icon) return;
 
     // upload icon to firebase storage then get icon url which is then saved in the firestore database with the form
-    const iconRef = ref(storage, icon.name);
+    const iconRef = ref(storage, `${Date.now()} ${icon.name}`);
     const upload = uploadBytes(iconRef, icon);
     getDownloadURL((await upload).ref).then((downloadUrl) => {
-      console.log(downloadUrl);
       // save form to firestore
       try {
         addDoc(collection(db, "skills"), {
