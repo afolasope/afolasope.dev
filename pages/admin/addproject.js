@@ -6,7 +6,7 @@ import {
   serverTimestamp,
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
-import { MDBInput } from "mdb-react-ui-kit";
+import { MDBCheckbox, MDBInput } from "mdb-react-ui-kit";
 import React, { useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import AdminHeader from "../../components/AdminHeader";
@@ -27,6 +27,7 @@ const AddProject = ({ stackOptions }) => {
   const [image, setImage] = useState(null);
   const [screenshots, setScreenshots] = useState([]);
   const [stack, setStack] = useState(null);
+  const [isNative, setIsNative] = useState(false);
   const [ckeditorReady, setCkeditorReady] = useState(false);
   const [editor, setEditor] = useState(null);
   const { CKEditor, ClassicEditor } = editorRef.current || {};
@@ -69,7 +70,7 @@ const AddProject = ({ stackOptions }) => {
     try {
       // Main image will be uploaded first, if successful other screenshots will then be uploaded
       console.log("uploading image");
-      const imageRef = ref(storage, image.name);
+      const imageRef = ref(storage, `${Date.now()} ${image.name}`);
       const uploadImage = await uploadBytes(imageRef, image);
       getDownloadURL(uploadImage.ref).then((imageUrl) => {
         const screenshotUrls = [];
@@ -77,7 +78,10 @@ const AddProject = ({ stackOptions }) => {
         try {
           for (const [key, value] of Object.entries(screenshots)) {
             const uploadScreenshot = async (screenshot) => {
-              const screenshotRef = ref(storage, screenshot.name);
+              const screenshotRef = ref(
+                storage,
+                `${Date.now()} ${screenshot.name}`
+              );
               const uploadScreenshot = await uploadBytes(
                 screenshotRef,
                 screenshot
@@ -114,6 +118,7 @@ const AddProject = ({ stackOptions }) => {
           screenshots: screenshotUrls.map((screenshotUrl) => ({
             image: screenshotUrl,
           })),
+          isNative,
           blog,
           timestamp: serverTimestamp(),
         });
@@ -171,6 +176,9 @@ const AddProject = ({ stackOptions }) => {
               }}
             />
             <br />
+            <label className="form-label" htmlFor="long-value-select">
+              Select stack
+            </label>
             <Select
               isMulti
               name="stack"
@@ -181,6 +189,16 @@ const AddProject = ({ stackOptions }) => {
               classNamePrefix="select"
               onChange={(values) => {
                 setStack(values);
+              }}
+            />
+            <br />
+            <MDBCheckbox
+              name="flexCheck"
+              value={isNative}
+              id="flexCheckDefault"
+              label="Native app"
+              onChange={() => {
+                setIsNative(!isNative);
               }}
             />
             <br />

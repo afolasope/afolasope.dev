@@ -17,13 +17,11 @@ export default function Home({ skills, projects }) {
             <img src="/gbolahan.jpg" alt="image" />
           </div>
           <div className="info">
-            <h1>Hi,</h1>
-            <h1>I&apos;m Afeez G. Lawal</h1>
-            <p>
-              A highly motivated web developer with a passion for coding and
-              embracing challenges. On a journey of professional growth, I am
-              open to learning from and collaborating with other creatives.
-            </p>
+            <h1>Hi, I&apos;m Afeez</h1>
+            <p>And I build amazing stuff on the web</p>
+            <a className="contact-me" href="mailto: afeezlg@gmail.com">
+              Contact me
+            </a>
           </div>
         </header>
       </div>
@@ -74,23 +72,40 @@ export default function Home({ skills, projects }) {
                   {project.data.stack.map((tech) => (
                     <img
                       src={tech.icon}
+                      height={25}
                       alt={`${tech.tech} icon`}
                       className="img-icon"
                       key={project.data.stack.indexOf(tech)}
                     />
                   ))}
                 </div>
-                <a href={project.data.github} target="_blank" rel="noreferrer">
-                  <i className="fab fa-github"></i>code
-                </a>
                 <a
-                  href={project.data.demoUrl}
+                  href={project.data.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn site-link"
+                  className="github-link"
                 >
-                  View site
+                  <i className="fab fa-github"></i>code{"  "}
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
+                {project.data.isNative ? (
+                  <a
+                    href={project.data.demoUrl}
+                    download
+                    className="btn site-link"
+                  >
+                    Download app
+                  </a>
+                ) : (
+                  <a
+                    href={project.data.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn site-link"
+                  >
+                    View site
+                  </a>
+                )}
               </div>
             </div>
           ))}
