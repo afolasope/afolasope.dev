@@ -18,7 +18,10 @@ export default function Home({ skills, projects }) {
           </div>
           <div className="info">
             <h1>Hi, I&apos;m Afeez</h1>
-            <p>And I build amazing stuff on the web</p>
+            <p>
+              And I build amazing stuff on the web by converting ideas from
+              pixels to pixel perfect, scalable web applications
+            </p>
             <a className="contact-me" href="mailto: afeezlg@gmail.com">
               Contact me
             </a>
@@ -48,6 +51,7 @@ export default function Home({ skills, projects }) {
                       <MDBCarouselElement
                         src={project.data.image}
                         alt="Project Screenshot"
+                        className="project-screenshot"
                       />
                     </MDBCarouselItem>
                     {project.data.screenshots.map((screenshot) => (
@@ -57,6 +61,7 @@ export default function Home({ skills, projects }) {
                         <MDBCarouselElement
                           src={screenshot.image}
                           alt="Project Screenshot"
+                          className="project-screenshot"
                         />
                       </MDBCarouselItem>
                     ))}
