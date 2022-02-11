@@ -35,13 +35,13 @@ function MyApp({ Component, pageProps }) {
           name="image"
           content="https://firebasestorage.googleapis.com/v0/b/afeezgl.appspot.com/o/gbolahan.jpg?alt=media&token=4a3b58c8-8ba7-4b70-a2d4-e8bc8c7cdc54"
         />
-        <meta itemprop="name" content="Afeez Lawal - Frontend Developer" />
+        <meta itemProp="name" content="Afeez Lawal - Frontend Developer" />
         <meta
-          itemprop="description"
+          itemProp="description"
           content="I build amazing stuff on the web by converting ideas from pixels to pixel perfect, scalable web applications"
         />
         <meta
-          itemprop="image"
+          itemProp="image"
           content="https://firebasestorage.googleapis.com/v0/b/afeezgl.appspot.com/o/gbolahan.jpg?alt=media&token=4a3b58c8-8ba7-4b70-a2d4-e8bc8c7cdc54"
         />
         <meta name="og:title" content="Afeez Lawal - Frontend Developer" />
