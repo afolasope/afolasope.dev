@@ -4,7 +4,7 @@ import {
   MDBCarouselInner,
   MDBCarouselItem,
 } from "mdb-react-ui-kit";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, query, orderBy } from "@firebase/firestore";
 import db from "../firebase";
 import safeJsonStringify from "safe-json-stringify";
 
@@ -144,8 +144,10 @@ export const getServerSideProps = async () => {
     data: JSON.parse(safeJsonStringify(doc.data())),
   }));
   // get projects from firebase
-  const projectsRef = await getDocs(collection(db, "projects"));
-  const projects = projectsRef.docs.map((doc) => ({
+  const projectsRef = collection(db, "projects");
+  const projectsQuery = query(projectsRef, orderBy("rating", "desc"));
+  const documents = await getDocs(projectsQuery);
+  const projects = documents.docs.map((doc) => ({
     id: doc.id,
     data: JSON.parse(safeJsonStringify(doc.data())),
   }));

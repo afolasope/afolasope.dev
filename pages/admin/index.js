@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import db from "../../firebase";
 import { getAuth } from "firebase/auth";
 import Login from "../../components/Login";
@@ -44,7 +51,11 @@ const Index = () => {
       }
 
       // get projects from firestore database
-      const allprojects = await getDocs(collection(db, "projects"));
+      const projectsQuery = query(
+        collection(db, "projects"),
+        orderBy("rating", "desc")
+      );
+      const allprojects = await getDocs(projectsQuery);
       const projectsData = allprojects.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
