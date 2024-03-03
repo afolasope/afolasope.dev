@@ -41,7 +41,7 @@ export default function Profile() {
                 <Image src={'/gbolahan.jpg'} width={48} height={48} alt='Afeez Lawal' className='rounded-full' />
 
                 {links.map((link) => (
-                    <SocialLink {...link} />
+                    <SocialLink {...link} key={link.name} />
                 ))}
             </div>
         </section>
