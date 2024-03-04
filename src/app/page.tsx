@@ -8,7 +8,7 @@ const projects: ProjectProps[] = [
         description:
             'Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.',
         sourceCode: 'https://github.com/IntegraflowHQ/website',
-        liveUrl: 'https://useintegraflow.com',
+        liveUrl: 'https://www.useintegraflow.com/',
     },
     {
         name: 'Integraflow web SDK',
