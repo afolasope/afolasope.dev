@@ -3,7 +3,7 @@ import { Eye, GitBranch } from './icons';
 export type ProjectProps = {
     name: string;
     tech: string;
-    description: string;
+    description?: string;
     sourceCode?: string;
     liveUrl?: string;
 };
@@ -16,7 +16,7 @@ export default function ProjectCard({ name, tech, description, sourceCode, liveU
                 <strong className='text-xs font-semibold'>{tech}</strong>
             </header>
 
-            <p className='text-primary text-sm'>{description}</p>
+            {description ? <p className='text-primary text-sm'>{description}</p> : null}
 
             <div className='flex gap-3'>
                 {sourceCode ? (

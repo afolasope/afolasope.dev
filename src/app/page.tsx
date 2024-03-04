@@ -3,76 +3,42 @@ import ProjectCard, { ProjectProps } from '@/components/ProjectCard';
 
 const projects: ProjectProps[] = [
     {
-        name: 'Lorem, ipsum dolor sit amet',
+        name: 'Integraflow website',
+        tech: 'NextJS, TypeScript, TailwindCSS',
         description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+            'Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.',
+        sourceCode: 'https://github.com/IntegraflowHQ/website',
+        liveUrl: 'https://useintegraflow.com',
     },
     {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+        name: 'Integraflow web SDK',
+        tech: 'Preact, TypeScript, TailwindCSS, WebPack, Rollup, Babel',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow-web',
+        liveUrl: 'https://www.npmjs.com/package/@integraflow/web',
     },
     {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+        name: 'Integraflow dashboard',
+        tech: 'React, TypeScript, TailwindCSS, Apollo',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/ENG-91/apps/frontend',
     },
     {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+        name: 'Integraflow backend',
+        tech: 'Python, Django, Celery, Graphene, PostgreSQL, Docker',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/ENG-91/backend',
     },
     {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+        name: 'Amet',
+        tech: 'React, Redux, Firebase',
+        description: 'A concept cinema app',
+        sourceCode: 'https://github.com/AfeezGL/ametmovie',
+        liveUrl: 'https://ametmovie.web.app/',
     },
     {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
-    },
-    {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
-    },
-    {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
-    },
-    {
-        name: 'Lorem, ipsum dolor sit amet',
-        description:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime id eum commodi aperiam facilis earum!',
-        tech: 'Lorem, ipsum, dolor, sit',
-        sourceCode: 'https://fghjk.hj/hjk',
-        liveUrl: 'https://fghjk.hj/hjk',
+        name: 'BucketList',
+        tech: 'React, Firebase',
+        description: 'A simple app for documenting your targets and achievements.',
+        sourceCode: 'https://github.com/AfeezGL/bucketlist-firebase',
+        liveUrl: 'https://bucketlist-24fcf.web.app/',
     },
 ];
 
