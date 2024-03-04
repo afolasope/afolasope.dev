@@ -1,4 +1,6 @@
-export const ExternalLink = () => {
+import { SVGProps } from 'react';
+
+export const ExternalLink = (props: SVGProps<SVGSVGElement>) => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -11,6 +13,7 @@ export const ExternalLink = () => {
             stroke-linecap='round'
             stroke-linejoin='round'
             className='text-white'
+            {...props}
         >
             <path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6' />
             <path d='m21 3-9 9' />

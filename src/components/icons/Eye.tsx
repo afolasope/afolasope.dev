@@ -1,21 +1,21 @@
 import { SVGProps } from 'react';
 
-export const Twitter = (props: SVGProps<SVGSVGElement>) => {
+export const Eye = (props: SVGProps<SVGSVGElement>) => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
             width='24'
             height='24'
             viewBox='0 0 24 24'
-            fill='white'
+            fill='none'
             stroke='currentColor'
             stroke-width='2'
             stroke-linecap='round'
             stroke-linejoin='round'
-            className='text-white'
             {...props}
         >
-            <path d='M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z' />
+            <path d='M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z' />
+            <circle cx='12' cy='12' r='3' />
         </svg>
     );
 };
