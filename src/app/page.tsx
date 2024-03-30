@@ -40,6 +40,21 @@ const projects: ProjectProps[] = [
         sourceCode: 'https://github.com/AfeezGL/bucketlist-firebase',
         liveUrl: 'https://bucketlist-24fcf.web.app/',
     },
+    {
+        name: 'BucketList Mobile',
+        tech: 'React Native, Firebase',
+        description: 'A simple app for documenting your targets and achievements.',
+        sourceCode: 'https://github.com/AfeezGL/BucketListFirebaseNative',
+        liveUrl:
+            'https://firebasestorage.googleapis.com/v0/b/afeezgl.appspot.com/o/bucketlist.apk?alt=media&token=f4a0b0be-8523-48b2-9c3a-6778678ef0fa',
+    },
+    {
+        name: 'QuickStream',
+        tech: 'React, AgoraSDK, Firebase',
+        description: 'A webRTC livestream web application.',
+        sourceCode: 'https://github.com/AfeezGL/quickstream',
+        liveUrl: 'https://quick-stream.web.app',
+    },
 ];
 
 export default function Home() {
