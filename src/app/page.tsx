@@ -19,12 +19,13 @@ const projects: ProjectProps[] = [
     {
         name: 'Integraflow dashboard',
         tech: 'React, TypeScript, TailwindCSS, Apollo',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/ENG-91/apps/frontend',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/apps/frontend',
+        liveUrl: 'https://app.useintegraflow.com',
     },
     {
         name: 'Integraflow backend',
         tech: 'Python, Django, Celery, Graphene, PostgreSQL, Docker',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/ENG-91/backend',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/backend',
     },
     {
         name: 'Amet',
