@@ -13,8 +13,8 @@ const projects: ProjectProps[] = [
     {
         name: 'Integraflow web SDK',
         tech: 'Preact, TypeScript, TailwindCSS, WebPack, Rollup, Babel',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow-web',
-        liveUrl: 'https://www.npmjs.com/package/@integraflow/web',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow',
+        liveUrl: 'https://www.npmjs.com/package/integraflow-js',
     },
     {
         name: 'Integraflow dashboard',
