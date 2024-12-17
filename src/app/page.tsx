@@ -3,8 +3,8 @@ import ProjectCard, { ProjectProps } from '@/components/ProjectCard';
 
 const projects: ProjectProps[] = [
     {
-        name: 'Integraflow website',
-        tech: 'NextJS, TypeScript, TailwindCSS',
+        name: 'Integraflow playground',
+        tech: 'React, TypeScript, TailwindCSS',
         description:
             'Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.',
         sourceCode: 'https://github.com/IntegraflowHQ/website',
@@ -23,38 +23,30 @@ const projects: ProjectProps[] = [
         liveUrl: 'https://app.useintegraflow.com',
     },
     {
-        name: 'Integraflow backend',
-        tech: 'Python, Django, Celery, Graphene, PostgreSQL, Docker',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/backend',
+        name: 'Weather Bolt',
+        tech: 'Javascript, CSS',
+        description:
+            'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
+        sourceCode: 'https://github.com/afolasope/weatherBolt',
+        liveUrl: 'https://weatherbolts.netlify.app',
     },
     {
-        name: 'Amet',
-        tech: 'React, Redux, Firebase',
-        description: 'A concept cinema app',
-        sourceCode: 'https://github.com/AfeezGL/ametmovie',
-        liveUrl: 'https://ametmovie.web.app/',
+        name: 'Folarooney',
+        tech: 'Typescript, Javascript, CSS',
+        sourceCode: 'https://github.com/afolasope/Folarooney',
+        liveUrl: 'https://folarooney.onrender.com/',
     },
     {
-        name: 'BucketList',
-        tech: 'React, Firebase',
-        description: 'A simple app for documenting your targets and achievements.',
-        sourceCode: 'https://github.com/AfeezGL/bucketlist-firebase',
-        liveUrl: 'https://bucketlist-24fcf.web.app/',
+        name: 'Easybank',
+        tech: 'SCSS, Html, Javascript',
+        sourceCode: 'https://github.com/afolasope/easy-bank',
+        liveUrl: 'https://enchanting-easy-banking.netlify.app/',
     },
     {
-        name: 'BucketList Mobile',
-        tech: 'React Native, Firebase',
-        description: 'A simple app for documenting your targets and achievements.',
-        sourceCode: 'https://github.com/AfeezGL/BucketListFirebaseNative',
-        liveUrl:
-            'https://firebasestorage.googleapis.com/v0/b/afeezgl.appspot.com/o/bucketlist.apk?alt=media&token=f4a0b0be-8523-48b2-9c3a-6778678ef0fa',
-    },
-    {
-        name: 'QuickStream',
-        tech: 'React, AgoraSDK, Firebase',
-        description: 'A webRTC livestream web application.',
-        sourceCode: 'https://github.com/AfeezGL/quickstream',
-        liveUrl: 'https://quick-stream.web.app',
+        name: 'Task manager',
+        tech: 'Javascript, Html, CSS',
+        sourceCode: 'https://github.com/afolasope/task-manager',
+        liveUrl: 'https://task-manager-fola.netlify.app',
     },
 ];
 

@@ -1,17 +1,20 @@
-import Image from 'next/image';
 import SocialLink from './SocialLink';
 import { GitHub, Twitter } from './icons';
 
 const links = [
     {
-        url: 'https://github.com/afeezgl',
+        url: 'https://github.com/folasope',
         name: 'GitHub',
         Icon: GitHub,
     },
     {
-        url: 'https://twitter.com/afeezgl',
+        url: 'https://twitter.com/afolasope_',
         name: 'Twitter',
         Icon: Twitter,
+    },
+    {
+        url: 'mailto:folasopeadebanjo@gmail.com',
+        name: 'Gmail',
     },
 ];
 
@@ -21,25 +24,24 @@ export default function Profile() {
             <section className='space-y-8'>
                 <header className='space-y-4'>
                     <h1 className='text-white text-5xl font-bold leading-tight xl:text-[64px] xl:leading-none'>
-                        Afeez Lawal
+                        Adebanjo Afolasope
                     </h1>
-                    <p className='text-white text-2xl leading-tight font-semibold'>Software Engineer</p>
+                    <p className='text-white text-2xl leading-tight font-semibold'>Software Developer</p>
                 </header>
 
                 <p className='text-primary leading-loose text-sm xl:max-w-[634px]'>
-                    Results-driven Software Engineer with a strong background in{' '}
-                    <span className='text-white'>frontend</span> development and a passion for creating exceptional{' '}
-                    <span className='text-white'>user experiences</span>. Proficient in TypeScript, React, NextJS,
-                    Preact, and CSS, with a track record of designing and implementing innovative web applications.
-                    Adept at collaborating with cross-functional teams to deliver{' '}
-                    <span className='text-white'>high-quality solutions</span> that drive productivity and{' '}
-                    <span className='text-white'>user satisfaction</span>.
+                    Frontend Developer experienced in building responsive,{' '}
+                    <span className='text-white'>high-performance</span>. {''} web applications using React.js,
+                    JavaScript, Typescript, NextJS, Preact and CSS. Passionate about combining technical expertise with
+                    user-centered design to{' '}
+                    <span className='text-white'> deliver functional and engaging web solutions </span>. Strong
+                    collaborator with experience delivering practical, user-centered solutions that improve
+                    functionality and elevate
+                    <span className='text-white'> user experience</span>.
                 </p>
             </section>
 
             <div className='flex gap-4 items-center'>
-                <Image src={'/gbolahan.jpg'} width={48} height={48} alt='Afeez Lawal' className='rounded-full' />
-
                 {links.map((link) => (
                     <SocialLink {...link} key={link.name} />
                 ))}
