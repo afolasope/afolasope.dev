@@ -3,7 +3,7 @@ import { GitHub, Twitter } from './icons';
 
 const links = [
     {
-        url: 'https://github.com/folasope',
+        url: 'https://github.com/afolasope',
         name: 'GitHub',
         Icon: GitHub,
     },

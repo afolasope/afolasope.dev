@@ -22,17 +22,17 @@ const projects: ProjectProps[] = [
         sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/apps/frontend',
         liveUrl: 'https://app.useintegraflow.com',
     },
-    {
-        name: 'Weather Bolt',
-        tech: 'Javascript, CSS',
-        description:
-            'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
-        sourceCode: 'https://github.com/afolasope/weatherBolt',
-        liveUrl: 'https://weatherbolts.netlify.app',
-    },
+    // {
+    //     name: 'Weather Bolt',
+    //     tech: 'Javascript, CSS',
+    //     description:
+    //         'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
+    //     sourceCode: 'https://github.com/afolasope/weatherBolt',
+    //     liveUrl: 'https://weatherbolts.netlify.app',
+    // },
     {
         name: 'Folarooney',
-        tech: 'Typescript, Javascript, CSS',
+        tech: 'Typescript, React, CSS',
         sourceCode: 'https://github.com/afolasope/Folarooney',
         liveUrl: 'https://folarooney.onrender.com/',
     },
@@ -43,7 +43,7 @@ const projects: ProjectProps[] = [
         liveUrl: 'https://enchanting-easy-banking.netlify.app/',
     },
     {
-        name: 'Task manager',
+        name: 'Fancy todo list',
         tech: 'Javascript, Html, CSS',
         sourceCode: 'https://github.com/afolasope/task-manager',
         liveUrl: 'https://task-manager-fola.netlify.app',
