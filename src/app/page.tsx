@@ -7,8 +7,8 @@ const projects: ProjectProps[] = [
         tech: 'React, TypeScript, TailwindCSS',
         description:
             'Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.',
-        sourceCode: 'https://github.com/IntegraflowHQ/website',
-        liveUrl: 'https://www.useintegraflow.com/',
+        sourceCode: 'https://github.com/IntegraflowHQ/integraflow-playground',
+        liveUrl: 'https://playground.useintegraflow.com/',
     },
     {
         name: 'Integraflow web SDK',
@@ -22,14 +22,21 @@ const projects: ProjectProps[] = [
         sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/apps/frontend',
         liveUrl: 'https://app.useintegraflow.com',
     },
-    // {
-    //     name: 'Weather Bolt',
-    //     tech: 'Javascript, CSS',
-    //     description:
-    //         'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
-    //     sourceCode: 'https://github.com/afolasope/weatherBolt',
-    //     liveUrl: 'https://weatherbolts.netlify.app',
-    // },
+    {
+        name: 'Scrs',
+        description: 'A url shortener',
+        tech: 'React, TypeScript, TailwindCSS',
+        sourceCode: 'https://github.com/afolasope/url-shortener-mern',
+        liveUrl: 'https://scrs-io.onrender.com/',
+    },
+    {
+        name: 'Weather Bolt',
+        tech: 'Javascript, CSS',
+        description:
+            'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
+        sourceCode: 'https://github.com/afolasope/weatherBolt',
+        liveUrl: 'https://weatherbolts.netlify.app',
+    },
     {
         name: 'Folarooney',
         tech: 'Typescript, React, CSS',
