@@ -34,7 +34,7 @@ export default function Profile() {
                     <span className='text-white'>high-performance</span>. {''} web applications using React.js,
                     JavaScript, Typescript, NextJS, Preact and CSS. Passionate about combining technical expertise with
                     user-centered design to{' '}
-                    <span className='text-white'> deliver functional and engaging web solutions </span>. Strong
+                    <span className='text-white'> deliver functional and engaging web solutions</span>. Strong
                     collaborator with experience delivering practical, user-centered solutions that improve
                     functionality and elevate
                     <span className='text-white'> user experience</span>.
