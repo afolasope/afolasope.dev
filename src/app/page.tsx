@@ -23,11 +23,23 @@ const projects: ProjectProps[] = [
         liveUrl: 'https://app.useintegraflow.com',
     },
     {
+        name: 'Folarooney',
+        tech: 'Typescript, React, CSS',
+        sourceCode: 'https://github.com/afolasope/Folarooney',
+        liveUrl: 'https://folarooney.onrender.com/',
+    },
+    {
         name: 'Scrs',
         description: 'A url shortener',
         tech: 'React, TypeScript, TailwindCSS',
         sourceCode: 'https://github.com/afolasope/url-shortener-mern',
         liveUrl: 'https://scrs-io.onrender.com/',
+    },
+    {
+        name: 'Easybank',
+        tech: 'SCSS, Html, Javascript',
+        sourceCode: 'https://github.com/afolasope/easy-bank',
+        liveUrl: 'https://enchanting-easy-banking.netlify.app/',
     },
     {
         name: 'Weather Bolt',
@@ -36,18 +48,6 @@ const projects: ProjectProps[] = [
             'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
         sourceCode: 'https://github.com/afolasope/weatherBolt',
         liveUrl: 'https://weatherbolts.netlify.app',
-    },
-    {
-        name: 'Folarooney',
-        tech: 'Typescript, React, CSS',
-        sourceCode: 'https://github.com/afolasope/Folarooney',
-        liveUrl: 'https://folarooney.onrender.com/',
-    },
-    {
-        name: 'Easybank',
-        tech: 'SCSS, Html, Javascript',
-        sourceCode: 'https://github.com/afolasope/easy-bank',
-        liveUrl: 'https://enchanting-easy-banking.netlify.app/',
     },
     {
         name: 'Fancy todo list',
