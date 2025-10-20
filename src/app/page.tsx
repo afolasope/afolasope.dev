@@ -1,59 +1,71 @@
-import Profile from '@/components/Profile';
-import ProjectCard, { ProjectProps } from '@/components/ProjectCard';
+import Profile from "@/components/Profile";
+import ProjectCard, { ProjectProps } from "@/components/ProjectCard";
 
 const projects: ProjectProps[] = [
     {
-        name: 'Integraflow playground',
-        tech: 'React, TypeScript, TailwindCSS',
+        name: "Liveet Home page",
+        tech: "Vue, TailwindCSS",
+        description: "Liveet Technologies is an event management platform.",
+        liveUrl: "https://liveet.co/",
+    },
+    {
+        name: "Liveet Guest Experience page",
+        tech: "Vue, TailwindCSS, Blade, Laravel",
+        description: "Liveet Technologies is an event management platform.",
+        liveUrl: "https://staging.liveet.co/p/CCKLIZ",
+    },
+    {
+        name: "Integraflow playground",
+        tech: "React, TypeScript, TailwindCSS",
         description:
-            'Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow-playground',
-        liveUrl: 'https://playground.useintegraflow.com/',
+            "Integraflow is a cutting-edge platform that specialises in in-product micro-surveys for SaaS and digital products.",
+        sourceCode: "https://github.com/IntegraflowHQ/integraflow-playground",
+        liveUrl: "https://playground.useintegraflow.com/",
     },
     {
-        name: 'Integraflow web SDK',
-        tech: 'Preact, TypeScript, TailwindCSS, WebPack, Rollup, Babel',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow',
-        liveUrl: 'https://www.npmjs.com/package/integraflow-js',
+        name: "Integraflow web SDK",
+        tech: "Preact, TypeScript, TailwindCSS, WebPack, Rollup, Babel",
+        sourceCode: "https://github.com/IntegraflowHQ/integraflow",
+        liveUrl: "https://www.npmjs.com/package/integraflow-js",
     },
     {
-        name: 'Integraflow dashboard',
-        tech: 'React, TypeScript, TailwindCSS, Apollo',
-        sourceCode: 'https://github.com/IntegraflowHQ/integraflow/tree/main/apps/frontend',
-        liveUrl: 'https://app.useintegraflow.com',
+        name: "Integraflow dashboard",
+        tech: "React, TypeScript, TailwindCSS, Apollo",
+        sourceCode: "https://github.com/IntegraflowHQ/integraflow/tree/main/apps/frontend",
+        liveUrl: "https://app.useintegraflow.com",
     },
     {
-        name: 'Folarooney',
-        tech: 'Typescript, React, CSS',
-        sourceCode: 'https://github.com/afolasope/Folarooney',
-        liveUrl: 'https://folarooney.onrender.com/',
+        name: "Folarooney",
+        tech: "Typescript, React, CSS",
+        sourceCode: "https://github.com/afolasope/Folarooney",
+        liveUrl: "https://folarooney.onrender.com/",
     },
     {
-        name: 'Scrs',
-        description: 'A url shortener',
-        tech: 'React, TypeScript, TailwindCSS',
-        sourceCode: 'https://github.com/afolasope/url-shortener-mern',
-        liveUrl: 'https://scrs-io.onrender.com/',
+        name: "Scrs",
+        description: "A url shortener",
+        tech: "React, TypeScript, TailwindCSS",
+        sourceCode: "https://github.com/afolasope/url-shortener-mern",
+        liveUrl: "https://scrs-io.onrender.com/",
     },
     {
-        name: 'Easybank',
-        tech: 'SCSS, Html, Javascript',
-        sourceCode: 'https://github.com/afolasope/easy-bank',
-        liveUrl: 'https://enchanting-easy-banking.netlify.app/',
+        name: "Easybank",
+        tech: "SCSS, Html, Javascript",
+        sourceCode: "https://github.com/afolasope/easy-bank",
+        liveUrl: "https://enchanting-easy-banking.netlify.app/",
     },
     {
-        name: 'Weather Bolt',
-        tech: 'Javascript, CSS',
+        name: "Weather Bolt",
+        tech: "Javascript, CSS",
         description:
-            'Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience',
-        sourceCode: 'https://github.com/afolasope/weatherBolt',
-        liveUrl: 'https://weatherbolts.netlify.app',
+            "Experience the weather in the most popular cities. The app also incorporates CRUD actions for a better user experience",
+        sourceCode: "https://github.com/afolasope/weatherBolt",
+        liveUrl: "https://weatherbolts.netlify.app",
     },
     {
-        name: 'Fancy todo list',
-        tech: 'Javascript, Html, CSS',
-        sourceCode: 'https://github.com/afolasope/task-manager',
-        liveUrl: 'https://task-manager-fola.netlify.app',
+        name: "Fancy todo list",
+        tech: "Javascript, Html, CSS",
+        sourceCode: "https://github.com/afolasope/task-manager",
+        liveUrl: "https://task-manager-fola.netlify.app",
     },
 ];
 
